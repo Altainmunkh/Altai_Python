@@ -1,9 +1,14 @@
 #The mega function
+booked_seats = [[[],[],[]],[[],[],[]],[[],[],[]]]
 def cinema_booking():
+    movie_index=None
+    session_index=None 
     chosen_seating="nothing"
     #the seating function
     def the_seating_function():
         nonlocal chosen_seating
+        nonlocal movie_index
+        nonlocal session_index
         while chosen_seating not in seating:
             chosen_seating = input("Which seat would you like? ")
             if chosen_seating == "x":
@@ -11,6 +16,7 @@ def cinema_booking():
                 chosen_seating='nothing2'
             elif chosen_seating in seating:
                 print("You have chosen seat [", chosen_seating,']')
+                booked_seats[movie_index][session_index]=chosen_seating
             else:
                 print("error, input not accepted. (check your spelling and capitalization)")
     #name and phone number
@@ -42,6 +48,7 @@ def cinema_booking():
         chosen_movie = input("Which movie would you like to watch? ")
         if chosen_movie in movies:
             print("You have chosen", chosen_movie)
+            movie_index=movies.index(chosen_movie)
         else:
             print("error, input not accepted. (check your spelling and capitalization)")
 
@@ -76,6 +83,7 @@ def cinema_booking():
         chosen_time = input("When would you like to watch? ")
         if chosen_time in times:
             print("You have chosen to watch in the", chosen_time)
+            session_index=times.index(chosen_time)
         else:
             print("error, input not accepted. (check your spelling and capitalization)")
 
@@ -156,9 +164,7 @@ def cinema_booking():
                     print (seating[4:8])
                     the_seating_function()
     #booking info
-    print("You have chosen to watch",chosen_movie,"in the",chosen_time,"at seat [",chosen_seating,']')
-
-    
+    print("You have chosen to watch",chosen_movie,"in the",chosen_time,"at seat [",chosen_seating,']')    
 
 
 #the variables
